@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
-const API_URL = "http://127.0.0.1:8000";
+// FIX: Use Vercel Environment Variable in production, fallback to localhost in development
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 // ==========================================
 // 1. LOGIN COMPONENT
