@@ -74,14 +74,13 @@ function Login({ setAuth }) {
     </div>
   );
 }
-
 // ==========================================
 // 2. MAIN DASHBOARD LAYOUT
 // ==========================================
 function Dashboard({ user, setAuth }) {
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [showMessage, setShowMessage] = useState(!!user.message);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Mobile sidebar state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const navigate = useNavigate();
   const token = localStorage.getItem('fiveforge_token');
   
@@ -141,16 +140,13 @@ function Dashboard({ user, setAuth }) {
         </div>
       )}
 
-      {/* MOBILE SIDEBAR OVERLAY */}
       {isSidebarOpen && (
         <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setIsSidebarOpen(false)}></div>
       )}
 
-      {/* SIDEBAR (Hidden on mobile, slides in) */}
       <div className={`w-72 bg-slate-900 text-slate-300 flex flex-col shadow-2xl z-50 fixed inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out`}>
         <div className="h-24 bg-white flex items-center justify-between px-4 border-b-4 border-blue-600 shadow-md">
           <img src="/logo.png" alt="FiveForge" className="w-40" />
-          {/* Close button for mobile */}
           <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-slate-800 p-2">
              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
@@ -176,11 +172,9 @@ function Dashboard({ user, setAuth }) {
         </div>
       </div>
 
-      {/* MAIN CONTENT */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden w-full">
         <header className="bg-white shadow-sm p-4 md:p-8 flex justify-between items-center z-0 border-b border-slate-200">
           <div className="flex items-center gap-4">
-            {/* HAMBURGER MENU BUTTON FOR MOBILE */}
             <button onClick={() => setIsSidebarOpen(true)} className="md:hidden text-slate-600 hover:text-blue-600">
               <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
@@ -210,14 +204,12 @@ function Dashboard({ user, setAuth }) {
     </div>
   );
 }
-
 // ==========================================
 // 3. MODULE VIEWS
 // ==========================================
 function DashboardView({ user, displayRole }) {
   return (
     <div className="space-y-8">
-      {/* Premium Welcome Banner */}
       <div className="bg-gradient-to-r from-blue-900 to-slate-900 p-6 md:p-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row justify-between items-center relative overflow-hidden">
         <div className="relative z-10 text-center md:text-left">
           <h3 className="text-2xl md:text-4xl font-extrabold mb-3">Welcome back, {user.name}</h3>
@@ -226,10 +218,7 @@ function DashboardView({ user, displayRole }) {
         <img src="/logo.png" alt="FiveForge" className="h-16 md:h-20 bg-white p-2 rounded-xl mt-6 md:mt-0 relative z-10 shadow-lg" />
       </div>
 
-      {/* 3 Balanced Top Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-        
-        {/* Card 1: System Status */}
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-center">
           <p className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-2">System Status</p>
           <div className="flex items-center gap-3 mt-2">
@@ -238,7 +227,6 @@ function DashboardView({ user, displayRole }) {
           </div>
         </div>
 
-        {/* Card 2: Clearance Level */}
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-center">
           <p className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-2">Your Clearance</p>
           <h3 className="text-xl md:text-2xl font-extrabold text-slate-800 mt-2 flex items-center gap-2">
@@ -249,7 +237,6 @@ function DashboardView({ user, displayRole }) {
           </h3>
         </div>
 
-        {/* Card 3: Company Performance */}
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-center">
           <div className="flex justify-between items-center mb-2">
             <p className="text-slate-500 text-sm font-bold uppercase tracking-wider">Company Performance</p>
@@ -260,10 +247,8 @@ function DashboardView({ user, displayRole }) {
             <div className="bg-blue-600 h-4 rounded-full shadow-inner" style={{ width: '72%' }}></div>
           </div>
         </div>
-
       </div>
 
-      {/* Recent Activities Section */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
         <h3 className="text-xl font-bold text-slate-800 mb-6">Recent Activities</h3>
         <div className="space-y-6">
@@ -366,4 +351,404 @@ function FinanceView({ token }) {
           <h3 className="text-xl md:text-2xl font-extrabold text-slate-800 truncate">{formatMoney(totals.revenue)}</h3>
         </div>
         <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border-l-4 border-l-red-500">
-          <p className="text-slate-500 text
+          <p className="text-slate-500 text-xs md:text-sm font-bold uppercase mb-1">Total Expenses</p>
+          <h3 className="text-xl md:text-2xl font-extrabold text-slate-800 truncate">{formatMoney(totals.expenses)}</h3>
+        </div>
+        <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border-l-4 border-l-amber-500">
+          <p className="text-slate-500 text-xs md:text-sm font-bold uppercase mb-1">Total Payroll</p>
+          <h3 className="text-xl md:text-2xl font-extrabold text-slate-800 truncate">{formatMoney(totals.payroll)}</h3>
+        </div>
+        <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-4 md:p-6 rounded-2xl shadow-lg border border-slate-700">
+          <p className="text-slate-300 text-xs md:text-sm font-bold uppercase mb-1">Net Profit</p>
+          <h3 className="text-xl md:text-2xl font-extrabold text-white truncate">{formatMoney(totals.net_profit)}</h3>
+        </div>
+      </div>
+
+      <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200">
+        <h2 className="text-lg md:text-2xl font-extrabold text-slate-800 tracking-tight">Company Breakdown ({selectedYear})</h2>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-8">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left border-collapse min-w-[700px]">
+            <thead>
+              <tr className="bg-white text-slate-400 text-xs uppercase tracking-wider border-b border-slate-200">
+                <th className="p-4 md:p-5 font-bold">Month</th>
+                <th className="p-4 md:p-5 font-bold">Revenue</th>
+                <th className="p-4 md:p-5 font-bold">Expenses</th>
+                <th className="p-4 md:p-5 font-bold">Payroll</th>
+                <th className="p-4 md:p-5 font-bold text-right">Net Income</th>
+                <th className="p-4 md:p-5 font-bold">Performance Ratio</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {data.map((row, index) => {
+                const net = row.revenue - (row.expenses + row.payroll);
+                const ratio = Math.min((row.expenses / row.revenue) * 100, 100);
+                return (
+                  <tr key={index} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 md:p-5 font-semibold text-slate-700">{row.month}</td>
+                    <td className="p-4 md:p-5 text-green-600 font-bold whitespace-nowrap">{formatMoney(row.revenue)}</td>
+                    <td className="p-4 md:p-5 text-red-500 font-medium whitespace-nowrap">{formatMoney(row.expenses)}</td>
+                    <td className="p-4 md:p-5 text-amber-500 font-medium whitespace-nowrap">{formatMoney(row.payroll)}</td>
+                    <td className={`p-4 md:p-5 text-right font-extrabold whitespace-nowrap ${net > 0 ? 'text-slate-800' : 'text-red-600'}`}>{formatMoney(net)}</td>
+                    <td className="p-4 md:p-5">
+                      <div className="w-full bg-slate-200 rounded-full h-2.5 min-w-[100px]">
+                        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${ratio}%` }}></div>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr className="bg-slate-800 text-white">
+                <td className="p-4 md:p-5 font-bold uppercase tracking-wider text-xs md:text-sm">{selectedYear} Total</td>
+                <td className="p-4 md:p-5 font-extrabold text-green-400 whitespace-nowrap">{formatMoney(totals.revenue)}</td>
+                <td className="p-4 md:p-5 font-extrabold text-red-400 whitespace-nowrap">{formatMoney(totals.expenses)}</td>
+                <td className="p-4 md:p-5 font-extrabold text-amber-400 whitespace-nowrap">{formatMoney(totals.payroll)}</td>
+                <td className="p-4 md:p-5 text-right font-extrabold text-white whitespace-nowrap">{formatMoney(totals.net_profit)}</td>
+                <td className="p-4 md:p-5 text-xs text-slate-400 uppercase font-semibold">End of Year</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+// --- PRODUCTION ---
+function ProductionView({ token, user }) {
+  const [products, setProducts] = useState([]);
+  const [formData, setFormData] = useState({ name: '', stock_quantity: '', image_url: '' });
+  const [showForm, setShowForm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const loadProducts = () => {
+    fetch(`${API_URL}/api/production/products?token=${token}`)
+      .then(res => res.json())
+      .then(d => setProducts(d.products));
+  };
+
+  useEffect(() => { loadProducts(); }, [token]);
+
+  const handleAddProduct = async (e) => {
+    e.preventDefault();
+    await fetch(`${API_URL}/api/production/products?token=${token}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...formData, stock_quantity: parseInt(formData.stock_quantity) })
+    });
+    setFormData({ name: '', stock_quantity: '', image_url: '' });
+    setShowForm(false);
+    loadProducts();
+  };
+
+  const handleDeleteProduct = async (productId) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    await fetch(`${API_URL}/api/production/products/${productId}?token=${token}`, { method: 'DELETE' });
+    loadProducts();
+  };
+
+  const canEdit = user.role === 'Production Manager';
+  
+  const filteredProducts = products.filter(p => 
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <h3 className="text-xl font-bold text-slate-800 w-full md:w-auto">Manufacturing Inventory</h3>
+        
+        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+          <input 
+            type="text" 
+            placeholder="Search products..." 
+            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none w-full md:w-64"
+            value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+          />
+          {canEdit && <button onClick={() => setShowForm(!showForm)} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold whitespace-nowrap w-full md:w-auto">{showForm ? 'Cancel' : 'Add Product'}</button>}
+        </div>
+      </div>
+
+      {showForm && canEdit && (
+        <form onSubmit={handleAddProduct} className="mb-8 p-4 md:p-6 bg-slate-50 border border-slate-200 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4">
+          <input type="text" placeholder="Product Name" required className="p-2 border rounded-lg" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+          <input type="number" placeholder="Initial Stock" required className="p-2 border rounded-lg" value={formData.stock_quantity} onChange={e => setFormData({...formData, stock_quantity: e.target.value})} />
+          <input type="text" placeholder="Image URL (e.g. bottle.jpg)" required className="p-2 border rounded-lg" value={formData.image_url} onChange={e => setFormData({...formData, image_url: e.target.value})} />
+          <button type="submit" className="col-span-1 md:col-span-3 bg-slate-800 text-white py-2 rounded-lg font-bold">Save Product (Notify Sales)</button>
+        </form>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        {filteredProducts.length === 0 ? <p className="text-slate-500 col-span-full">No products found.</p> : filteredProducts.map(p => {
+          const isWideProduct = ['pvc_pipe.jpg', 'chair.jpg', 'tank.jpg'].includes(p.image_url);
+
+          return (
+            <div key={p.id} className="border p-4 rounded-xl shadow-sm bg-white hover:shadow-md transition flex flex-col">
+              <div className="h-40 md:h-48 bg-white border border-slate-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden p-2 md:p-4">
+                <img 
+                  src={`/products/${p.image_url}`} 
+                  alt={p.name} 
+                  className={`object-contain h-full w-full ${isWideProduct ? 'scale-x-150' : ''}`} 
+                  onError={(e) => { e.target.style.display='none'; e.target.parentElement.innerText = 'No Image'; }} 
+                />
+              </div>
+              <h4 className="font-bold text-lg text-slate-800">{p.name}</h4>
+              <p className="text-slate-500 mt-1 mb-4 text-sm md:text-base">Stock: <span className="font-bold text-blue-600">{p.stock_quantity}</span> units</p>
+              
+              {canEdit && (
+                <button onClick={() => handleDeleteProduct(p.id)} className="mt-auto w-full bg-red-100 text-red-700 hover:bg-red-200 font-bold py-2 rounded-lg transition">
+                  Delete Product
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// --- SALES ---
+function SalesView({ token }) {
+  const [products, setProducts] = useState([]);
+  const [dispatchProduct, setDispatchProduct] = useState(null);
+  const [updatePriceProduct, setUpdatePriceProduct] = useState(null);
+  const [quantity, setQuantity] = useState('');
+  const [newPrice, setNewPrice] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const loadProducts = () => {
+    fetch(`${API_URL}/api/sales/products?token=${token}`)
+      .then(res => res.json())
+      .then(d => setProducts(d.products));
+  };
+
+  useEffect(() => { loadProducts(); }, [token]);
+
+  const handleDispatch = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`${API_URL}/api/sales/dispatch?token=${token}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product_id: dispatchProduct.id, quantity: parseInt(quantity) })
+    });
+    const data = await res.json();
+    
+    if (res.ok) {
+      alert(data.message);
+      setDispatchProduct(null);
+      setQuantity('');
+      loadProducts();
+    } else {
+      alert(data.detail);
+    }
+  };
+
+  const handleUpdatePrice = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`${API_URL}/api/sales/products/${updatePriceProduct.id}?token=${token}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ price: parseFloat(newPrice) })
+    });
+    if (res.ok) {
+      setUpdatePriceProduct(null);
+      setNewPrice('');
+      loadProducts();
+    }
+  };
+
+  const filteredProducts = products.filter(p => 
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <h3 className="text-xl font-bold text-slate-800 w-full md:w-auto">Finished Goods for Dispatch</h3>
+        <input 
+          type="text" 
+          placeholder="Search products..." 
+          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none w-full md:w-64"
+          value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+        />
+      </div>
+      
+      {dispatchProduct && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-sm">
+            <h4 className="font-bold text-xl mb-4 text-slate-800">Dispatch: {dispatchProduct.name}</h4>
+            <form onSubmit={handleDispatch}>
+              <label className="block text-sm font-bold mb-2">Quantity to Dispatch (Max: {dispatchProduct.stock_quantity})</label>
+              <input type="number" min="1" max={dispatchProduct.stock_quantity} required className="w-full border p-2 rounded mb-4" value={quantity} onChange={e => setQuantity(e.target.value)} />
+              <div className="flex gap-2">
+                <button type="button" onClick={() => setDispatchProduct(null)} className="w-full bg-slate-200 py-2 rounded font-bold">Cancel</button>
+                <button type="submit" className="w-full bg-purple-600 text-white py-2 rounded font-bold">Confirm</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {updatePriceProduct && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-sm">
+            <h4 className="font-bold text-xl mb-4 text-slate-800">Set Price: {updatePriceProduct.name}</h4>
+            <form onSubmit={handleUpdatePrice}>
+              <label className="block text-sm font-bold mb-2">Price (₦)</label>
+              <input type="number" min="0" required className="w-full border p-2 rounded mb-4" value={newPrice} onChange={e => setNewPrice(e.target.value)} />
+              <div className="flex gap-2">
+                <button type="button" onClick={() => setUpdatePriceProduct(null)} className="w-full bg-slate-200 py-2 rounded font-bold">Cancel</button>
+                <button type="submit" className="w-full bg-green-600 text-white py-2 rounded font-bold">Save Price</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        {filteredProducts.length === 0 ? <p className="text-slate-500 col-span-full">No products found.</p> : filteredProducts.map(p => {
+          const isWideProduct = ['pvc_pipe.jpg', 'chair.jpg', 'tank.jpg'].includes(p.image_url);
+
+          return (
+            <div key={p.id} className="border p-4 rounded-xl shadow-sm flex flex-col justify-between bg-white hover:shadow-md transition border-slate-200">
+              <div className="h-40 md:h-48 bg-white border border-slate-200 rounded-lg mb-4 flex items-center justify-center overflow-hidden p-2 md:p-4">
+                <img 
+                  src={`/products/${p.image_url}`} 
+                  alt={p.name} 
+                  className={`object-contain h-full w-full ${isWideProduct ? 'scale-x-150' : ''}`} 
+                  onError={(e) => { e.target.style.display='none'; e.target.parentElement.innerText = 'No Image'; }} 
+                />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg text-slate-800">{p.name}</h4>
+                <p className="text-slate-500 text-sm mt-1 mb-2">Available: {p.stock_quantity} units</p>
+                <p className={`font-extrabold text-lg md:text-xl ${Number(p.price) > 0 ? 'text-green-600' : 'text-red-500'}`}>
+                  {Number(p.price) > 0 ? `₦${Number(p.price).toLocaleString()}` : 'Price Not Set'}
+                </p>
+              </div>
+              
+              <div className="mt-4 flex flex-col gap-2">
+                {Number(p.price) === 0 && (
+                  <button onClick={() => { setUpdatePriceProduct(p); setNewPrice(''); }} className="w-full bg-green-100 text-green-700 hover:bg-green-200 font-bold py-2 rounded-lg transition text-sm">
+                    Update Price
+                  </button>
+                )}
+                <button onClick={() => setDispatchProduct(p)} disabled={p.stock_quantity === 0} className={`w-full font-bold py-2 rounded-lg transition text-sm ${p.stock_quantity === 0 ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}>
+                  {p.stock_quantity === 0 ? 'Out of Stock' : 'Create Dispatch'}
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+              }
+// ==========================================
+// 4. ADMIN: USER MANAGEMENT & BROADCAST
+// ==========================================
+function UserManagementView({ token }) {
+  const [roles, setRoles] = useState([]);
+  const [formData, setFormData] = useState({ full_name: '', email: '', password: '', role_id: '' });
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/roles`).then(res => res.json()).then(data => setRoles(data));
+  }, []);
+
+  const handleCreateUser = async (e) => {
+    e.preventDefault(); setMessage(''); setError('');
+    try {
+      const res = await fetch(`${API_URL}/api/admin/users?token=${token}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, role_id: parseInt(formData.role_id) })
+      });
+      const data = await res.json();
+      if (res.ok) { setMessage(data.message); setFormData({ full_name: '', email: '', password: '', role_id: '' }); }
+      else { setError(data.detail); }
+    } catch (err) { setError("Failed"); }
+  };
+
+  return (
+    <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto w-full">
+      <h3 className="text-xl md:text-2xl font-bold mb-6 text-slate-800">Provision New Employee</h3>
+      {message && <div className="bg-green-100 text-green-700 p-4 rounded-lg mb-6 font-bold">{message}</div>}
+      {error && <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6 font-bold">{error}</div>}
+      <form onSubmit={handleCreateUser} className="space-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          <input type="text" placeholder="Full Name" required className="w-full px-4 py-2 border rounded-lg" value={formData.full_name} onChange={e => setFormData({...formData, full_name: e.target.value})} />
+          <input type="email" placeholder="Email" required className="w-full px-4 py-2 border rounded-lg" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+          <input type="text" placeholder="Temporary Password" required className="w-full px-4 py-2 border rounded-lg" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
+          <select required className="w-full px-4 py-2 border rounded-lg bg-white" value={formData.role_id} onChange={e => setFormData({...formData, role_id: e.target.value})}>
+            <option value="">-- Select Role --</option>
+            {roles.map(role => <option key={role.id} value={role.id}>{role.name}</option>)}
+          </select>
+        </div>
+        <button type="submit" className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg">Create User</button>
+      </form>
+    </div>
+  );
+}
+
+function BroadcastView({ token }) {
+  const [roles, setRoles] = useState([]);
+  const [formData, setFormData] = useState({ role_id: '', message: '' });
+  const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/roles`).then(res => res.json()).then(data => setRoles(data));
+  }, []);
+
+  const handleBroadcast = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`${API_URL}/api/admin/broadcast?token=${token}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role_id: parseInt(formData.role_id), message: formData.message })
+    });
+    const data = await res.json();
+    setStatus(data.message);
+    setFormData({ role_id: '', message: '' });
+  };
+
+  return (
+    <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto w-full">
+      <h3 className="text-xl md:text-2xl font-bold mb-6 text-slate-800">Broadcast Message</h3>
+      <p className="text-slate-500 mb-6 text-sm md:text-base">Send a popup alert to an entire department (e.g., Ask Production to delete a product).</p>
+      {status && <div className="bg-green-100 text-green-700 p-4 rounded-lg mb-6 font-bold">{status}</div>}
+      <form onSubmit={handleBroadcast} className="space-y-5">
+        <select required className="w-full px-4 py-2 border rounded-lg bg-white" value={formData.role_id} onChange={e => setFormData({...formData, role_id: e.target.value})}>
+          <option value="">-- Select Department --</option>
+          {roles.map(role => <option key={role.id} value={role.id}>{role.name}</option>)}
+        </select>
+        <textarea required placeholder="Type your message here..." className="w-full px-4 py-2 border rounded-lg h-32 resize-none" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
+        <button type="submit" className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700">Send Broadcast</button>
+      </form>
+    </div>
+  );
+}
+
+// ==========================================
+// 5. APP ROUTER
+// ==========================================
+export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('fiveforge_user');
+    if (savedUser) setUser(JSON.parse(savedUser));
+  }, []);
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Login setAuth={setUser} />} />
+        <Route path="/dashboard" element={user ? <Dashboard user={user} setAuth={setUser} /> : <Navigate to="/" />} />
+      </Routes>
+    </Router>
+  );
+                                                                                                      }
